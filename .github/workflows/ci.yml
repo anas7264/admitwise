@@ -19,6 +19,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Install Node dependencies
+        run: npm install --no-audit --no-fund
       - name: Test admission rules
         run: npm test
       - name: Set up Python
@@ -31,3 +33,7 @@ jobs:
         run: python -m unittest discover -s tests -p "test_*.py"
       - name: Compile Python files
         run: python -m py_compile app.py tools/validate_backup.py
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run browser integration tests
+        run: npm run test:e2e
