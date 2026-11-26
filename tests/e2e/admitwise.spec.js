@@ -52,6 +52,7 @@ test("student can save a profile, compare a programme, and retain it after reloa
   expect(download.suggestedFilename()).toMatch(/^admitwise-backup-.*\.json$/);
 
   await page.reload();
+  await page.locator('[data-view="programs"]').click();
   await expect(page.locator("#programs-list .program-card")).toHaveCount(1);
   await expect(page.locator("#programs-list .status-pass")).toBeVisible();
 });
