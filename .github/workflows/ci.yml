@@ -1,0 +1,39 @@
+name: ADMITWISE CI
+
+on:
+  push:
+    branches: [main, "feature/**"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Node dependencies
+        run: npm install --no-audit --no-fund
+      - name: Test admission rules
+        run: npm test
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+      - name: Test Flask application and backup validation
+        run: python -m unittest discover -s tests -p "test_*.py"
+      - name: Compile Python files
+        run: python -m py_compile app.py tools/validate_backup.py
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run browser integration tests
+        run: npm run test:e2e

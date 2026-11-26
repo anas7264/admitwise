@@ -1,0 +1,9 @@
+[project]
+name = "admitwise"
+version = "0.1.0"
+description = "Local-first academic admission planner"
+requires-python = ">=3.11"
+dependencies = ["Flask>=3.1,<4"]
+
+[tool.vercel]
+entrypoint = "app:app"
