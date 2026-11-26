@@ -25,7 +25,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Test backup validation
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+      - name: Test Flask application and backup validation
         run: python -m unittest discover -s tests -p "test_*.py"
       - name: Compile Python files
         run: python -m py_compile app.py tools/validate_backup.py
