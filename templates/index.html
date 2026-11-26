@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172d43">
+  <meta name="description" content="ADMITWISE — مساحة محلية لتنظيم شروط القبول الجامعي ومقارنتها بملفك الأكاديمي.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <title>ADMITWISE — خريطة القبول الأكاديمي</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="ADMITWISE الصفحة الرئيسية"><span class="brand-mark">A</span><span><b>ADMITWISE</b><small>خريطة القبول الأكاديمي</small></span></a>
+      <div class="side-caption">مساحة العمل</div>
+      <nav class="main-nav" aria-label="التنقل الرئيسي">
+        <button class="nav-item active" data-view="overview"><span>▦</span> نظرة عامة</button>
+        <button class="nav-item" data-view="profile"><span>◉</span> ملفي الأكاديمي</button>
+        <button class="nav-item" data-view="programs"><span>⌕</span> البرامج والمؤسسات</button>
+        <button class="nav-item" data-view="research"><span>⌘</span> مختبر البحث</button>
+      </nav>
+      <div class="sidebar-foot"><span class="privacy-dot"></span><span>بياناتك تبقى على هذا الجهاز</span></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><span class="eyebrow">مساحة شخصية · إصدار تجريبي</span><h1 id="page-title">نظرة عامة</h1></div>
+        <div class="top-actions"><span class="local-indicator"><i></i> تخزين محلي</span><button class="button button-quiet" id="export-btn">تصدير نسخة احتياطية</button></div>
+      </header>
+
+      <section class="view active" id="view-overview">
+        <div class="hero">
+          <div class="hero-copy"><span class="hero-kicker">خطوتك القادمة تبدأ بالوضوح</span><h2>حوّل شروط القبول<br>إلى خطة قابلة للتنفيذ.</h2><p>اجمع متطلبات المؤسسات، قارنها ببياناتك الأكاديمية، واكتشف ما ينقصك — دون إرسال علاماتك إلى خادم خارجي.</p><button class="button button-light" data-go="programs">إضافة برنامج أكاديمي <span>←</span></button></div>
+          <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-core"><span>AW</span><small>ADMISSION<br>INTELLIGENCE</small></div><span class="float-tag tag-a">شروط موثقة</span><span class="float-tag tag-b">قرار أوضح</span></div>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">ملخص المساحة</span><h2>الصورة الحالية</h2></div><span class="muted" id="last-saved">لم تُحفظ بيانات بعد</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon">◎</span><span class="stat-label">اكتمال الملف الأكاديمي</span><strong id="stat-completeness">0%</strong><div class="progress"><i id="profile-progress"></i></div></article>
+          <article class="stat-card"><span class="stat-icon">⌂</span><span class="stat-label">برامج محفوظة</span><strong id="stat-programs">0</strong><small>برامج وسنوات قبول مسجلة</small></article>
+          <article class="stat-card"><span class="stat-icon">✓</span><span class="stat-label">تستوفي الشروط المسجلة</span><strong id="stat-pass">0</strong><small>ليست ضمانًا للقبول النهائي</small></article>
+          <article class="stat-card"><span class="stat-icon">!</span><span class="stat-label">تحتاج معلومات إضافية</span><strong id="stat-unknown">0</strong><small>بيانات أو شروط غير مكتملة</small></article>
+        </div>
+        <div class="content-grid">
+          <article class="panel"><div class="panel-head"><div><span class="eyebrow">ابدأ من هنا</span><h3>إعداد المساحة</h3></div><span class="step-count">3 خطوات</span></div>
+            <div class="setup-list"><button class="setup-row" data-go="profile"><span class="setup-number">01</span><span><b>أدخل ملفك الأكاديمي</b><small>علامات البجروت والاختبارات</small></span><span class="setup-status" id="setup-profile">ابدأ ←</span></button><button class="setup-row" data-go="programs"><span class="setup-number">02</span><span><b>أضف برنامجًا جامعيًا</b><small>المؤسسة والتخصص وشروط القبول</small></span><span class="setup-status" id="setup-programs">ابدأ ←</span></button><button class="setup-row" data-go="programs"><span class="setup-number">03</span><span><b>راجع المقارنة</b><small>افهم نقاط القوة والفجوات</small></span><span class="setup-status">بعد الإضافة ←</span></button></div>
+          </article>
+          <article class="panel note-panel"><span class="note-symbol">✳</span><span class="eyebrow">مبدأ أساسي</span><h3>الشفافية قبل التوقعات</h3><p>يعرض ADMITWISE مدى استيفائك للشروط التي أدخلتها فقط. لا يتنبأ بقرار لجنة القبول ولا يستبدل التحقق من الموقع الرسمي للمؤسسة.</p><a href="#" data-go="research">كيف نقيس موثوقية النتائج؟ ←</a></article>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">آخر ما أضفته</span><h2>البرامج المحفوظة</h2></div><button class="text-button" data-go="programs">عرض الكل ←</button></div>
+        <div id="recent-programs" class="program-list empty-state">لا توجد برامج بعد. أضف أول برنامج لمشاهدة المقارنة هنا.</div>
+      </section>
+
+      <section class="view" id="view-profile">
+        <div class="view-intro"><span class="eyebrow">بياناتك الأكاديمية</span><h2>ملفك في مكان واحد.</h2><p>أدخل العلامات كما تظهر في سجلاتك. الحقول الفارغة لا تُعامل كعلامات رسوب؛ ستظهر نتائجها «غير محسومة».</p></div>
+        <form id="profile-form" class="panel form-panel">
+          <div class="form-section"><div class="form-section-title"><span>01</span><div><h3>البجروت</h3><p>المعدل الذي تستخدمه المؤسسة إن كان معروفًا، وعلامات المواد.</p></div></div>
+            <div class="field-grid"><label class="field"><span>معدل البجروت المستخدم للقبول</span><input name="bagrutAverage" type="number" min="0" max="150" step="0.1" placeholder="مثال: 104.5"></label><label class="field"><span>وحدات الرياضيات</span><input name="mathUnits" type="number" min="0" max="5" step="1" placeholder="مثال: 4"></label><label class="field"><span>علامة الرياضيات</span><input name="mathGrade" type="number" min="0" max="100" placeholder="مثال: 92"></label><label class="field"><span>وحدات الإنجليزية</span><input name="englishUnits" type="number" min="0" max="5" step="1" placeholder="مثال: 4"></label><label class="field"><span>علامة الإنجليزية</span><input name="englishGrade" type="number" min="0" max="100" placeholder="مثال: 82"></label><label class="field"><span>وحدات الفيزياء</span><input name="physicsUnits" type="number" min="0" max="5" step="1" placeholder="مثال: 5"></label><label class="field"><span>علامة الفيزياء</span><input name="physicsGrade" type="number" min="0" max="100" placeholder="مثال: 85"></label></div>
+          </div>
+          <div class="form-section"><div class="form-section-title"><span>02</span><div><h3>الاختبارات</h3><p>أدخل النتائج المتوفرة لديك فقط.</p></div></div>
+            <div class="field-grid"><label class="field"><span>البسيخومتري الكلي</span><input name="psychometricTotal" type="number" min="200" max="800" placeholder="200–800"></label><label class="field"><span>البسيخومتري الكمي (כמותי)</span><input name="psychometricQuant" type="number" min="50" max="150" placeholder="50–150"></label><label class="field"><span>יעל / יעלנט</span><input name="yael" type="number" min="50" max="150" placeholder="50–150"></label><label class="field"><span>AMIRNET</span><input name="amirnet" type="number" min="50" max="150" placeholder="50–150"></label></div>
+          </div>
+          <div class="form-actions"><span class="muted">تُحفظ البيانات في متصفحك فقط.</span><button class="button button-primary" type="submit">حفظ الملف الأكاديمي</button></div>
+        </form>
+      </section>
+
+      <section class="view" id="view-programs">
+        <div class="view-intro intro-row"><div><span class="eyebrow">قاعدة شروط القبول</span><h2>البرامج والمؤسسات</h2><p>أدخل الشروط من مصدر رسمي، وحدد إن كانت إلزامية أو بدائل.</p></div><button class="button button-primary" id="new-program-btn">＋ إضافة برنامج</button></div>
+        <div id="program-editor" class="panel editor-panel hidden">
+          <div class="panel-head"><div><span class="eyebrow">سجل جديد</span><h3 id="editor-title">إضافة برنامج أكاديمي</h3></div><button class="icon-button" id="close-editor" aria-label="إغلاق">×</button></div>
+          <form id="program-form">
+            <input type="hidden" name="id">
+            <div class="field-grid"><label class="field"><span>اسم المؤسسة *</span><input name="institution" required maxlength="120" placeholder="مثال: جامعة تل أبيب"></label><label class="field"><span>اسم التخصص *</span><input name="program" required maxlength="120" placeholder="مثال: هندسة كهرباء"></label><label class="field"><span>سنة القبول *</span><input name="year" required type="number" min="2024" max="2100" value="2027"></label><label class="field"><span>نوع الدرجة</span><select name="degree"><option value="بكالوريوس">بكالوريوس</option><option value="هندسي">دبلوم هندسي</option><option value="أخرى">أخرى</option></select></label><label class="field"><span>المنطقة</span><input name="region" placeholder="مثال: المركز"></label><label class="field"><span>لغة الدراسة</span><input name="language" placeholder="مثال: العبرية"></label><label class="field field-wide"><span>رابط مصدر شروط القبول الرسمي</span><input name="sourceUrl" type="url" placeholder="https://..."></label><label class="field field-wide"><span>ملاحظات / تاريخ آخر مراجعة</span><textarea name="notes" rows="2" placeholder="اكتب تاريخ التحقق وأي ملاحظات مهمة."></textarea></label></div>
+            <div class="criteria-heading"><div><h4>شروط القبول</h4><p>كل مجموعة مستقلة إلزامية (AND)، وداخل مجموعة البدائل يكفي شرط واحد (OR).</p></div><button class="button button-outline button-small" type="button" id="add-group">＋ مجموعة شروط</button></div>
+            <div id="groups-container"></div>
+            <div class="form-actions"><button type="button" class="button button-quiet" id="cancel-program">إلغاء</button><button type="submit" class="button button-primary">حفظ البرنامج</button></div>
+          </form>
+        </div>
+        <div class="toolbar"><div class="search-wrap"><span>⌕</span><input id="program-search" type="search" placeholder="ابحث عن مؤسسة أو تخصص..."></div><span id="program-count" class="muted">0 برامج</span></div>
+        <div id="programs-list" class="program-list empty-state">لم تضف أي برنامج بعد.</div>
+      </section>
+
+      <section class="view" id="view-research">
+        <div class="view-intro"><span class="eyebrow">Design Science Research</span><h2>من أداة عملية إلى بحث قابل للقياس.</h2><p>يوفر هذا القسم إطارًا أوليًا لتقييم أثر نظام محلي قابل للتفسير في مساعدة الطلاب على مقارنة شروط القبول.</p></div>
+        <div class="research-grid"><article class="panel research-main"><span class="eyebrow">سؤال البحث</span><h3>هل يساعد نظام محلي قابل للتفسير في تقليل الوقت والأخطاء عند مقارنة شروط القبول الجامعي؟</h3><p>يُبنى البحث حول تصميم الأداة، اختبارها بحالات مرجعية، ثم تقييم قابلية استخدامها وفهم الطلاب لمخرجاتها.</p><h4>منهجية مقترحة</h4><ol class="method-list"><li><b>تحديد المشكلة</b><span>تشتت شروط القبول وتغيرها بين المؤسسات والسنوات.</span></li><li><b>تصميم الأداة</b><span>سجل موثق ومحرك قواعد يفسر pass / fail / unknown.</span></li><li><b>التحقق التقني</b><span>حالات اختبار اصطناعية بنتائج متوقعة ومراجعة مستقلة.</span></li><li><b>تقييم الاستخدام</b><span>مهام محددة وقياس الوقت وفهم أسباب النتيجة.</span></li></ol></article>
+          <article class="panel"><span class="eyebrow">مؤشرات التقييم</span><div class="metric-row"><b>دقة القواعد</b><span>مطابقة النتائج المرجعية</span></div><div class="metric-row"><b>زمن القرار</b><span>الوقت اللازم لتقييم برنامج</span></div><div class="metric-row"><b>جودة التوثيق</b><span>مصدر رسمي وسنة وتاريخ مراجعة</span></div><div class="metric-row"><b>قابلية التفسير</b><span>فهم الطالب لسبب كل حالة</span></div><div class="metric-row"><b>سهولة الاستخدام</b><span>نجاح إتمام المهام دون مساعدة</span></div><div class="research-warning">لا تستخدم علامات أو بيانات تعريفية حقيقية في تجربة بحثية دون ضرورة وموافقة وإجراءات أخلاقية مناسبة. يمكن البدء ببيانات اصطناعية.</div></article></div>
+        <article class="panel limitations"><span class="eyebrow">حدود النموذج الأولي</span><div class="limitation-grid"><span>إدخال الشروط يدويًا</span><span>لا يحسب معدل بجروت خاصًا بكل مؤسسة</span><span>لا يتنبأ باحتمال القبول</span><span>لا توجد مزامنة بين الأجهزة</span><span>لا يستبدل المصادر الرسمية</span><span>البيانات مرتبطة بالمتصفح والجهاز</span></div></article>
+      </section>
+      <footer class="app-footer"><span>ADMITWISE <span class="footer-sep">·</span> أداة تنظيم ومقارنة، وليست قرار قبول رسميًا.</span><span>نسخة أولية 0.1.0</span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <template id="group-template"><div class="criteria-group"><div class="group-top"><label class="field"><span>اسم المجموعة</span><input class="group-name" maxlength="80" placeholder="مثال: شروط أساسية"></label><label class="field"><span>منطق المجموعة</span><select class="group-mode"><option value="all">كل الشروط مطلوبة (AND)</option><option value="any">يكفي شرط واحد (OR)</option></select></label><button type="button" class="remove-group text-button">حذف المجموعة</button></div><div class="rules-list"></div><button type="button" class="add-rule text-button">＋ إضافة شرط</button></div></template>
+  <template id="rule-template"><div class="rule-row"><label class="field"><span>المعيار</span><select class="rule-field"><option value="bagrutAverage">معدل البجروت</option><option value="psychometricTotal">البسيخومتري الكلي</option><option value="psychometricQuant">البسيخومتري الكمي</option><option value="yael">יעל / יעלנט</option><option value="amirnet">AMIRNET</option><option value="mathUnits">وحدات الرياضيات</option><option value="mathGrade">علامة الرياضيات</option><option value="englishUnits">وحدات الإنجليزية</option><option value="englishGrade">علامة الإنجليزية</option><option value="physicsUnits">وحدات الفيزياء</option><option value="physicsGrade">علامة الفيزياء</option></select></label><label class="field"><span>المقارنة</span><select class="rule-operator"><option value="gte">على الأقل ≥</option><option value="gt">أكبر من &gt;</option><option value="lte">على الأكثر ≤</option><option value="lt">أقل من &lt;</option><option value="eq">يساوي =</option></select></label><label class="field"><span>القيمة</span><input class="rule-value" type="number" step="any" required placeholder="مثال: 5"></label><button type="button" class="remove-rule icon-button" aria-label="حذف الشرط">×</button></div></template>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
