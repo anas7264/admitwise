@@ -1,5 +1,5 @@
-const CACHE_NAME = "admitwise-shell-v1";
-const SHELL = ["/", "/styles.css", "/app.js", "/core.js", "/manifest.webmanifest", "/favicon.svg"];
+const CACHE_NAME = "admitwise-shell-v2";
+const SHELL = ["/", "/styles.css", "/app.js", "/core.js", "/discovery.js", "/manifest.webmanifest", "/favicon.svg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL)));

@@ -1,4 +1,5 @@
 import { evaluateInstitution, getProfileCompleteness, validateInstitution } from "/core.js";
+import { MAJORS, INSTITUTIONS, searchMajors, searchInstitutions, buildDiscoveryRequest } from "/discovery.js";
 
 const DB_NAME = "admitwise-local";
 const DB_VERSION = 1;
@@ -230,6 +231,85 @@ async function importBackup(file) {
   } catch (error) { showToast(error.message || "تعذر قراءة النسخة الاحتياطية."); }
 }
 
+
+let selectedInstitutionIds = [];
+
+function renderMajorOptions() {
+  const query = document.querySelector("#major-search").value;
+  const select = document.querySelector("#major-select");
+  const previous = select.value;
+  const options = searchMajors(query);
+  select.innerHTML = '<option value="">اختر التخصص</option>' + options.map((major) =>
+    `<option value="${escapeHtml(major.id)}">${escapeHtml(major.nameAr)} — ${escapeHtml(major.name)}</option>`
+  ).join("");
+  if (options.some((major) => major.id === previous)) select.value = previous;
+}
+
+function renderInstitutionOptions() {
+  const query = document.querySelector("#institution-search").value;
+  const type = document.querySelector("#institution-type").value;
+  const visible = searchInstitutions(query, type);
+  const container = document.querySelector("#institution-options");
+  container.innerHTML = visible.map((institution) => {
+    const checked = selectedInstitutionIds.includes(institution.id);
+    const disabled = !checked && selectedInstitutionIds.length >= 5;
+    return `<label class="institution-option ${checked ? "selected" : ""}">
+      <input type="checkbox" value="${escapeHtml(institution.id)}" ${checked ? "checked" : ""} ${disabled ? "disabled" : ""}>
+      <span><b>${escapeHtml(institution.nameAr)}</b><small>${escapeHtml(institution.name)}</small></span>
+      <i>${checked ? "✓" : "+"}</i>
+    </label>`;
+  }).join("");
+  if (!visible.length) container.innerHTML = '<div class="empty-state">لا توجد مؤسسة مطابقة للبحث.</div>';
+  document.querySelector("#institution-selection-count").textContent = `${selectedInstitutionIds.length} / 5`;
+}
+
+async function initializeDiscovery() {
+  const saved = await get("preferences", "discovery");
+  if (saved && Array.isArray(saved.institutionIds)) {
+    selectedInstitutionIds = saved.institutionIds.filter((id) => INSTITUTIONS.some((item) => item.id === id)).slice(0, 5);
+    if (MAJORS.some((major) => major.id === saved.majorId)) document.querySelector("#major-select").value = saved.majorId;
+    if ([2027, 2028, 2029].includes(saved.academicYear)) document.querySelector("#discovery-year").value = String(saved.academicYear);
+  }
+  renderMajorOptions();
+  if (saved?.majorId) document.querySelector("#major-select").value = saved.majorId;
+  renderInstitutionOptions();
+}
+
+function bindDiscoveryControls() {
+  document.querySelector("#major-search").addEventListener("input", renderMajorOptions);
+  document.querySelector("#institution-search").addEventListener("input", renderInstitutionOptions);
+  document.querySelector("#institution-type").addEventListener("change", renderInstitutionOptions);
+  document.querySelector("#institution-options").addEventListener("change", (event) => {
+    const checkbox = event.target.closest('input[type="checkbox"]');
+    if (!checkbox) return;
+    if (checkbox.checked && selectedInstitutionIds.length < 5) selectedInstitutionIds.push(checkbox.value);
+    else if (!checkbox.checked) selectedInstitutionIds = selectedInstitutionIds.filter((id) => id !== checkbox.value);
+    renderInstitutionOptions();
+  });
+  document.querySelector("#save-discovery").addEventListener("click", async () => {
+    try {
+      const request = buildDiscoveryRequest({
+        majorId: document.querySelector("#major-select").value,
+        institutionIds: selectedInstitutionIds,
+        academicYear: Number(document.querySelector("#discovery-year").value)
+      });
+      await put("preferences", {
+        majorId: request.majorId,
+        institutionIds: [...request.institutionIds],
+        academicYear: request.academicYear,
+        sourcePolicy: request.sourcePolicy,
+        updatedAt: Date.now()
+      }, "discovery");
+      document.querySelector("#discovery-validation").textContent = "تم حفظ نطاق البحث محليًا. لم يبدأ جلب الشروط بعد.";
+      document.querySelector("#discovery-validation").classList.add("success");
+      showToast("تم حفظ التخصص والمؤسسات المختارة محليًا.");
+    } catch (error) {
+      document.querySelector("#discovery-validation").textContent = error.validationErrors?.join(" ") || error.message;
+      document.querySelector("#discovery-validation").classList.remove("success");
+    }
+  });
+}
+
 async function init() {
   try { db = await openDatabase(); }
   catch (error) {
@@ -240,11 +320,13 @@ async function init() {
   const profile = await get("profile", PROFILE_KEY) || {};
   fillProfile(document.querySelector("#profile-form"), profile);
   resetProgramForm();
+  await initializeDiscovery();
   await refreshDashboard();
 
   document.querySelectorAll("[data-view]").forEach((button) => button.addEventListener("click", () => navigate(button.dataset.view)));
   document.querySelectorAll("[data-go]").forEach((button) => button.addEventListener("click", (event) => { event.preventDefault(); navigate(button.dataset.go); }));
   document.querySelector("#profile-form").addEventListener("submit", saveProfile);
+  bindDiscoveryControls();
   document.querySelector("#new-program-btn").addEventListener("click", () => openEditor());
   document.querySelector("#close-editor").addEventListener("click", () => document.querySelector("#program-editor").classList.add("hidden"));
   document.querySelector("#cancel-program").addEventListener("click", () => document.querySelector("#program-editor").classList.add("hidden"));

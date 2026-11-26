@@ -18,6 +18,7 @@
       <nav class="main-nav" aria-label="التنقل الرئيسي">
         <button class="nav-item active" data-view="overview"><span>▦</span> نظرة عامة</button>
         <button class="nav-item" data-view="profile"><span>◉</span> ملفي الأكاديمي</button>
+        <button class="nav-item" data-view="discovery"><span>⌖</span> اكتشاف شروط القبول</button>
         <button class="nav-item" data-view="programs"><span>⌕</span> البرامج والمؤسسات</button>
         <button class="nav-item" data-view="research"><span>⌘</span> مختبر البحث</button>
       </nav>
@@ -63,6 +64,43 @@
           </div>
           <div class="form-actions"><span class="muted">تُحفظ البيانات في متصفحك فقط.</span><button class="button button-primary" type="submit">حفظ الملف الأكاديمي</button></div>
         </form>
+      </section>
+
+
+      <section class="view" id="view-discovery">
+        <div class="view-intro">
+          <span class="eyebrow">اكتشاف مضبوط بالمصادر</span>
+          <h2>ابدأ بالتخصص والمؤسسات.</h2>
+          <p>حدد التخصص وسنة القبول، ثم اختر المؤسسات التي تريد فحصها. لا يتجاوز البحث المؤسسات التي تحددها.</p>
+        </div>
+        <article class="panel discovery-panel">
+          <div class="form-section">
+            <div class="form-section-title"><span>01</span><div><h3>التخصص وسنة القبول</h3><p>اختر تخصصًا من القاموس متعدد اللغات.</p></div></div>
+            <div class="field-grid">
+              <label class="field"><span>ابحث عن التخصص</span><input id="major-search" type="search" placeholder="عبري أو عربي أو إنجليزي..." autocomplete="off"></label>
+              <label class="field"><span>التخصص</span><select id="major-select" required><option value="">اختر التخصص</option></select></label>
+              <label class="field"><span>سنة القبول</span><select id="discovery-year"><option>2027</option><option>2028</option><option>2029</option></select></label>
+            </div>
+          </div>
+          <div class="form-section">
+            <div class="form-section-title"><span>02</span><div><h3>المؤسسات التي تريد البحث فيها</h3><p>اختر مؤسسة واحدة على الأقل، وبحد أقصى خمس مؤسسات.</p></div></div>
+            <div class="institution-toolbar">
+              <label class="search-wrap"><span>⌕</span><input id="institution-search" type="search" placeholder="ابحث عن مؤسسة..." autocomplete="off"></label>
+              <label class="field institution-filter"><span>نوع المؤسسة</span><select id="institution-type"><option value="all">الكل</option><option value="university">جامعات</option><option value="college">كليات</option></select></label>
+              <span id="institution-selection-count" class="selection-count">0 / 5</span>
+            </div>
+            <div id="institution-options" class="institution-options" aria-live="polite"></div>
+            <p id="discovery-validation" class="validation-message" role="status" aria-live="polite">اختر تخصصًا ومؤسسة واحدة على الأقل.</p>
+          </div>
+          <div class="form-actions">
+            <span class="muted">بياناتك الأكاديمية لا تدخل في طلب البحث.</span>
+            <button class="button button-primary" id="save-discovery" type="button">حفظ نطاق البحث</button>
+          </div>
+        </article>
+        <article class="panel discovery-notice">
+          <strong>مرحلة الإعداد الحالية</strong>
+          <p>تم تجهيز القاموس وقواعد اختيار المؤسسات. البحث الحي واستخراج صفحات المؤسسات وملفات PDF سيُفعّل بعد ربط موصل البحث والتحقق من النطاقات الرسمية؛ لن تظهر شروط تلقائية قبل ذلك.</p>
+        </article>
       </section>
 
       <section class="view" id="view-programs">
