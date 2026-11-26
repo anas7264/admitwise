@@ -20,7 +20,7 @@ export const INSTITUTIONS = [
 ];
 
 export const MAJORS = [
-  { id: "electrical-engineering", name: "הנדסת חשמל ואלקטרוניקה", nameAr: "هندسة الكهرباء والإلكترونיקה", aliases: ["הנדסת חשמל", "הנדסת אלקטרוניקה", "electrical engineering", "electronics engineering"] },
+  { id: "electrical-engineering", name: "הנדסת חשמל ואלקטרוניקה", nameAr: "هندسة الكهرباء والإلكترونية", aliases: ["הנדסת חשמל", "הנדסת אלקטרוניקה", "electrical engineering", "electronics engineering"] },
   { id: "mechanical-engineering", name: "הנדסת מכונות", nameAr: "الهندسة الميكانيكية", aliases: ["mechanical engineering"] },
   { id: "computer-engineering", name: "הנדסת מחשבים", nameAr: "هندسة الحاسوب", aliases: ["computer engineering"] },
   { id: "software-engineering", name: "הנדסת תוכנה", nameAr: "هندسة البرمجيات", aliases: ["software engineering"] },
